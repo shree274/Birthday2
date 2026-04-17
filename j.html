@@ -1,0 +1,171 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Jaisri💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e0, #d6f0ff, #e6d6ff);
+    color: #5a4a6b;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.container {
+    padding: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ff7aa2;
+}
+
+#countdown {
+    font-size: 2rem;
+    margin: 20px 0;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    padding: 15px 25px;
+    border-radius: 20px;
+}
+
+.quote {
+    max-width: 600px;
+    margin: 20px auto;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
+.gallery img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.heart {
+    position: fixed;
+    bottom: -10px;
+    font-size: 18px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ffb6c1;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Counting down to your day Jai 💖🎂</h1>
+
+<div id="countdown"></div>
+
+<div class="quote">
+"I don’t say this often, but you really mean a lot to me. No matter what happens, I’ll always be here for you.💖”
+</div>
+
+<div class="quote">
+“You are my favorite memory and my forever person 🫶”
+</div>
+
+<div class="quote">
+“No matter what happens, I’ll always be here for you. 💫”
+</div>
+
+<div class="gallery">
+    <img src="j2.jpeg">
+    <img src="j5.jpeg">
+    <img src="j6.jpeg">
+    <img src="j424.jpeg">
+</div>
+
+<br>
+
+<button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+
+<!-- AUTOPLAY (Muted First) -->
+<audio id="music" autoplay loop muted>
+    <source src="ja.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+/* COUNTDOWN */
+let target = new Date("April 20, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    let now = new Date().getTime();
+    let diff = target - now;
+
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    let mins = Math.floor((diff / (1000 * 60)) % 60);
+    let secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + mins + "m " + secs + "s ";
+
+}, 1000);
+
+/* TRY TO UNMUTE AUTOMATICALLY */
+let m = document.getElementById("music");
+
+setTimeout(() => {
+    m.muted = false;
+    m.volume = 1;
+
+    let playPromise = m.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            console.log("Autoplay with sound blocked by browser");
+        });
+    }
+}, 2000);
+
+/* BUTTON CONTROL */
+function toggleMusic() {
+    if (m.paused) m.play();
+    else m.pause();
+}
+
+/* FLOATING HEARTS */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+
+</script>
+
+</body>
+</html>
+```
